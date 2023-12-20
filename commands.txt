@@ -1,4 +1,10 @@
+#Load the env
+
+source .venv/bin/activate
+
 #Ansible commands :
+
+ansible-galaxy collection install community.kubernetes
 
 ansible-playbook ansible.yaml 
 
