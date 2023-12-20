@@ -1,0 +1,8 @@
+#Ansible commands :
+
+ansible-playbook ansible.yaml 
+
+kubectl commands :
+
+
+helm commands :
