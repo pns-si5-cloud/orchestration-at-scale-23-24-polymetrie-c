@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+python-dotenv
+aiohttp
+sqlalchemy
+redis
+psycopg2
+prometheus_client
+psutil

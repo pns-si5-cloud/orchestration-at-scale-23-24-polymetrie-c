@@ -1,0 +1,48 @@
+version: "3.9"
+
+services:
+  backend:
+    image: backend
+    build: 
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+      - DATABASE_URL=postgresql://sylcantor:test@db/mydb
+    depends_on:
+      - db
+      - redis
+  
+  db:
+    image: postgres:13
+    environment:
+      POSTGRES_USER: sylcantor
+      POSTGRES_PASSWORD: test
+      POSTGRES_DB: mydb
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "si5_sacc"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+  
+  redis:
+    image: "redis:latest"
+    ports:
+      - "6379:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  prometheus:
+    image: prom/prometheus
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    ports:
+      - "9090:9090"
+    depends_on:
+      - backend

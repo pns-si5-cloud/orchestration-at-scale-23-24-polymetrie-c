@@ -1,0 +1,38 @@
+---
+- name: Deploy Kubernetes components
+  hosts: localhost
+  gather_facts: no
+  tasks:
+    - name: Deploy PostgreSQL using Helm
+      community.kubernetes.helm:
+        name: pg
+        chart_ref: oci://registry-1.docker.io/bitnamicharts/postgresql
+        release_namespace: default
+        values:
+          postgresqlUsername: postgres
+          postgresqlPassword: admin
+          postgresqlDatabase: polymetrie-db
+
+    - name: Deploy Redis using Helm
+      community.kubernetes.helm:
+        name: redis
+        chart_ref: oci://registry-1.docker.io/bitnamicharts/redis
+        release_namespace: default
+
+    - name: Apply backend deployment
+      community.kubernetes.k8s:
+        state: present
+        src: backend-deployment.yaml
+        namespace : default
+
+    - name: Apply backend service
+      community.kubernetes.k8s:
+        state: present
+        src: backend-service.yaml
+        namespace : default
+
+    - name: Apply backend ingress
+      community.kubernetes.k8s:
+        state: present
+        src: backend-ingress.yaml
+        namespace : default
