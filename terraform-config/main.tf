@@ -40,7 +40,7 @@ resource "kubernetes_deployment" "backend" {
 
           env {
             name  = "DATABASE_URL"
-            value = "postgresql://postgres:vIb0KKfqE0@pg-postgresql:5432/postgres"
+            value = "postgresql://postgres:xYOa2gvS8N@db:5432/postgres"
           }
 
           env {
@@ -116,23 +116,24 @@ resource "kubernetes_deployment" "db" {
 
           env {
             name  = "POSTGRES_USER"
-            value = "sylcantor"
+            value = "postgres"
           }
 
           env {
             name  = "POSTGRES_PASSWORD"
-            value = "test"
+            value = "xYOa2gvS8N"
           }
 
           env {
             name  = "POSTGRES_DB"
-            value = "mydb"
+            value = "postgres"
           }
         }
       }
     }
   }
 }
+
 
 resource "kubernetes_service" "db" {
   metadata {
@@ -214,11 +215,11 @@ resource "kubernetes_config_map" "prometheus_config" {
     name      = "prometheus-config"
     namespace = kubernetes_namespace.student_ns.metadata[0].name
   }
-
   data = {
-    "prometheus.yml" = file("${path.module}/../prometheus-configmap.yaml")
+    "prometheus.yml" = file(var.prometheus_config_path)
   }
 }
+
 
 
 resource "kubernetes_deployment" "prometheus" {
@@ -253,8 +254,7 @@ resource "kubernetes_deployment" "prometheus" {
 
           volume_mount {
             name       = "config-volume"
-            mount_path = "/etc/prometheus/prometheus.yml"
-            sub_path   = "prometheus.yml"
+            mount_path = "/etc/prometheus"
           }
         }
 
