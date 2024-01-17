@@ -20,11 +20,11 @@ spec:
         - containerPort: 8080
         env:
         - name: DATABASE_URL
-          value: postgresql://postgres:vIb0KKfqE0@pg-postgresql:5432/postgres
+          value: postgresql://postgres:xYOa2gvS8N@db-pg-postgresql:5432/postgres
         - name: REDIS_HOST
           value: redis-master
         - name: REDIS_PORT
           value: "6379"
         - name: REDIS_PASSWORD
-          value: "t8mJPkJxOe"
+          value: "9DoTmFKdQu"
 
