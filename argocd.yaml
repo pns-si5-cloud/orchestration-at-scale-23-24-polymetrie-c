@@ -1,0 +1,33 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: nb-test-argocd
+
+---
+
+apiVersion: argoproj.io/v1beta1
+kind: ArgoCD
+metadata:
+  name: example-argocd
+  labels:
+    example: basic
+  namespace: nb-test-argocd
+spec:
+  server:
+    host:
+      argo.orch-teach.pns-projects.fr.eu.org
+    ingress:
+      enabled: true
+      ingressClassName: nginx
+    insecure: true
+
+
+
+
+
+
+
+
+
+
+
