@@ -6,9 +6,18 @@ source .venv/bin/activate
 
 ansible-galaxy collection install community.kubernetes
 
-ansible-playbook ansible.yaml 
+ansible-playbook ansible.yaml
 
 kubectl commands :
 
+### Create NameSpace
+
+kubectl create namespace polymetrie-c
+
+### Set current NameSpace
+
+kubectl config set-context --current --namespace=polymetrie-c
+
+## Don't forget to add namespace inside yaml files under metadata
 
 helm commands :

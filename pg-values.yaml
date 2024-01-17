@@ -1,3 +1,6 @@
 postgresqlUsername: postgres
 postgresqlPassword: admin
 postgresqlDatabase: polymetrie-db
+
+auth:
+  existingSecret: db-pg-user-pass
