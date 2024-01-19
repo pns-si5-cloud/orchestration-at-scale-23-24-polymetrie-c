@@ -3,16 +3,16 @@ prometheus:
     storageSpec:
       volumeClaimTemplate:
         spec:
-          storageClassName: "standard"  # Change this to your cluster's storage class
+          storageClassName: "csi-cinder-high-speed"  # Default storage class in cluster
           accessModes: ["ReadWriteOnce"]
           resources:
             requests:
               storage: 16Gi
-    retention: 7d  # 7 days retention
+    retention: 7d 
 
 grafana:
   persistence:
     enabled: true
-    storageClassName: "standard"  # Change this to your cluster's storage class
+    storageClassName: "csi-cinder-high-speed" 
     accessModes: ["ReadWriteOnce"]
     size: 1Gi
