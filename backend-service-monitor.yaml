@@ -2,8 +2,9 @@ apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
   name: backend-service-monitor
+  namespace: polymetrie-c
   labels:
-    release: prometheus-stack 
+    release: prometheus-stack
 spec:
   selector:
     matchLabels:
@@ -12,6 +13,6 @@ spec:
     matchNames:
       - polymetrie-c
   endpoints:
-  - port: "8080" 
-    interval: 30s
-    path: /metrics
+    - port: http
+      interval: 30s
+      path: /metrics
