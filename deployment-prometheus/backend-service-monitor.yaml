@@ -4,7 +4,7 @@ metadata:
   name: backend-service-monitor
   namespace: prometheus
   labels:
-    release: prometheus-stack-poly
+    release: pr-prom
 spec:
   selector:
     matchLabels:

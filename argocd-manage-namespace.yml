@@ -4,3 +4,10 @@ metadata:
   name: polymetrie-c
   labels:
     argocd.argoproj.io/managed-by: nb-test-argocd
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: prometheus
+  labels:
+    argocd.argoproj.io/managed-by: nb-test-argocd
