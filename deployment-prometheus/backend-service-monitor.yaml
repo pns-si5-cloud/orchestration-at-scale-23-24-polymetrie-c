@@ -8,7 +8,7 @@ metadata:
 spec:
   selector:
     matchLabels:
-      app: app.kubernetes.io/instance=polymetrie-last
+      app.kubernetes.io/instance=polymetrie-last
   namespaceSelector:
     matchNames:
       - polymetrie-c
