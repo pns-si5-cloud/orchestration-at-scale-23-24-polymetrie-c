@@ -8,6 +8,8 @@ RUN pip install -r requirements.txt
 
 WORKDIR /app
 
+RUN ls -la
+
 #COPY .env .
 COPY app .
 
