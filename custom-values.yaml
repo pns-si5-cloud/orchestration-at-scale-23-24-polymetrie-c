@@ -5,6 +5,8 @@ prometheus:
     serviceMonitorSelectorNilUsesHelmValues: false
     storageSpec:
       volumeClaimTemplate:
+        metadata:
+          name: data
         spec:
           storageClassName: "csi-cinder-high-speed"  # Default storage class in cluster
           accessModes: ["ReadWriteOnce"]
