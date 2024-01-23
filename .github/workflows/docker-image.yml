@@ -15,7 +15,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
-      run: docker build backend/ --file backend/Dockerfile --tag polymetrie:$(date +%s)
+      run: TAG="polymetrie:$(date +%s)" && docker build backend/ --file backend/Dockerfile --tag polymetrie:$TAG
     - name: Login to Docker Hub
       uses: docker/login-action@v2
       with:
@@ -24,5 +24,5 @@ jobs:
     - name: Push Api Docker image
       run: |
        docker images
-       docker tag polymetrie ${{ secrets.DOCKERHUB_USERNAME }}/backend-polymetrie
+       docker tag $TAG ${{ secrets.DOCKERHUB_USERNAME }}/backend-polymetrie
        docker push ${{ secrets.DOCKERHUB_USERNAME }}/backend-polymetrie  
