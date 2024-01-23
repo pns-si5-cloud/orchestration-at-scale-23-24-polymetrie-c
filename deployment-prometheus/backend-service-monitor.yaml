@@ -6,9 +6,6 @@ metadata:
   labels:
     release: pr-prom
 spec:
-  selector:
-    matchLabels:
-      app: backend-service
   namespaceSelector:
     matchNames:
       - polymetrie-c
