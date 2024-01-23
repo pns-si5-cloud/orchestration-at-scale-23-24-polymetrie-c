@@ -39,5 +39,5 @@ jobs:
           password: ${{ secrets.DOCKERHUB_PASS }}
       - name: Push Api Docker image
         run: |
-          docker tag polymetrie:v1.3 ${{ secrets.DOCKERHUB_USERNAME }}/backend-polymetrie
+          docker tag polymetrie:v1.3 ${{ secrets.DOCKERHUB_USERNAME }}/polymetrie:v1.3
           docker push ${{ secrets.DOCKERHUB_USERNAME }}/polymetrie:v1.3
