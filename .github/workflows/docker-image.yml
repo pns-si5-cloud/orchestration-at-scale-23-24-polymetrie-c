@@ -14,6 +14,7 @@ jobs:
       - name: Build the Docker image
         run: |
           docker build backend/ --file backend/Dockerfile --tag polymetrie:v1.3
+          docker save polymetrie:v1.3 > image.tar
       - name: Upload Docker image as an artifact
         uses: actions/upload-artifact@v2
         with:
