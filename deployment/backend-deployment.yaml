@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: backend
-        image: sylcantor/k8s-app:v1.2
+        image: cloudblip06/polymetrie:v1.3
         ports:
         - containerPort: 8080
         env:

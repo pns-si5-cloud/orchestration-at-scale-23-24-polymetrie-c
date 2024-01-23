@@ -2,9 +2,9 @@ apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
   name: backend-service-monitor
-  namespace: polymetrie-c
+  namespace: prometheus
   labels:
-    release: prometheus-stack
+    release: prometheus-stack-poly
 spec:
   selector:
     matchLabels:
