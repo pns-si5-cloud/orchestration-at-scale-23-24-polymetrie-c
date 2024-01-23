@@ -27,9 +27,12 @@ helm repo add prometheus-community https://prometheus-community.github.io/helm-c
 helm repo update
 
 ## Deploying with custom values 
-helm install prometheus-stack prometheus-community/kube-prometheus-stack -f custom-values.yaml
-kubectl --namespace default get pods -l "release=prometheus-stack"
+helm install prometheus-stack-poly prometheus-community/kube-prometheus-stack \
+--create-namespace --namespace prometheus \
+-f custom-values.yaml
 
-prometheus port forwarding : kubectl port-forward svc/prometheus-stack-kube-prom-prometheus 9090:9090
-grafana port forwarding : kubectl port-forward svc/prometheus-stack-grafana 8080:80
+kubectl --namespace prometheus get pods -l "release=prometheus-stack-poly"
+
+prometheus port forwarding : kubectl port-forward svc/prometheus-stack-poly-kube-prometheus 9090:9090
+grafana port forwarding : kubectl port-forward svc/prometheus-stack-poly-grafana 8080:80
 grafana username : admin | password : prom-operator
