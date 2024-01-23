@@ -14,7 +14,7 @@ jobs:
       - name: Build the Docker image
         run: |
           TAG="polymetrie:$(date +%s)"
-          docker build backend/ --file backend/Dockerfile --tag $TAG
+          docker build backend/ --file backend/Dockerfile --tag polymetrie:v1.3
           docker save $TAG > image.tar
           echo $TAG > tag.txt
       - name: Upload Docker image as an artifact
@@ -56,5 +56,5 @@ jobs:
           password: ${{ secrets.DOCKERHUB_PASS }}
       - name: Push Api Docker image
         run: |
-          docker tag ${{ env.TAG }} ${{ secrets.DOCKERHUB_USERNAME }}/backend-polymetrie
+          docker tag polymetrie:v1.3 ${{ secrets.DOCKERHUB_USERNAME }}/backend-polymetrie
           docker push ${{ secrets.DOCKERHUB_USERNAME }}/backend-polymetrie
