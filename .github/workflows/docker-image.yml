@@ -40,4 +40,4 @@ jobs:
       - name: Push Api Docker image
         run: |
           docker tag polymetrie:v1.3 ${{ secrets.DOCKERHUB_USERNAME }}/backend-polymetrie
-          docker push ${{ secrets.DOCKERHUB_USERNAME }}/backend-polymetrie
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/polymetrie:v1.3
