@@ -1,0 +1,11 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: monappli-monitor
+  namespace: polymetrie-c
+spec:
+  selector:
+    matchLabels:
+      app: backend
+  endpoints:
+  - port: http
