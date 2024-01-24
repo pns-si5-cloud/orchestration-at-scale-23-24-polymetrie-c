@@ -3,13 +3,19 @@ from metrics import redisConf
 from metrics import schemas
 from metrics import db
 
-from main import page_view_counter
+import prometheus_client
 
 router = APIRouter()
 
 db.init_db()
 
 db.init_client_data()
+
+page_view_counter = prometheus_client.Counter(
+    "page_view_count", 
+    "Compteur de vues de page par URL", 
+    ["url"]
+)
 
 @router.post("/metrics", tags=["metrics"])
 async def create_metrics(req: schemas.Metric):
