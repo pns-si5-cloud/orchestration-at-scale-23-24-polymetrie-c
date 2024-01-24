@@ -20,6 +20,21 @@ jobs:
         with:
           name: docker-image
           path: image.tar
+  
+  try-run:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download Docker image from artifacts
+        uses: actions/download-artifact@v2
+        with:
+          name: docker-image
+      - name: Load Docker image
+        run: |
+          docker load < image.tar
+      - name: Run Api Docker image
+        run: |
+          docker run -d -p 5000:5000 polymetrie:v1.3
 
   push:
     needs: build
