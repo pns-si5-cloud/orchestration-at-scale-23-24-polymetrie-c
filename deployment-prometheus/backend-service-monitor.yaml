@@ -14,5 +14,5 @@ spec:
       - polymetrie-c
   endpoints:
     - port: http
-      interval: 30s
+      interval: 15s
       path: /metrics
