@@ -24,6 +24,12 @@ http_requests_duration = prometheus_client.Histogram("http_request_duration_seco
 memory_usage = prometheus_client.Gauge("memory_usage_bytes", "Memory usage of the webservice (bytes)")
 cpu_usage = prometheus_client.Gauge("cpu_usage_seconds", "CPU usage of the webservice (seconds)")
 
+page_view_counter = prometheus_client.Counter(
+    "page_view_count", 
+    "Compteur de vues de page par URL", 
+    ["url"]
+)
+
 # Middleware pour collecter les métriques
 @app.middleware("http")
 async def collect_metrics(request, call_next):

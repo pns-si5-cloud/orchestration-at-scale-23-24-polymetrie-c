@@ -3,6 +3,8 @@ from metrics import redisConf
 from metrics import schemas
 from metrics import db
 
+from main import page_view_counter
+
 router = APIRouter()
 
 db.init_db()
@@ -23,6 +25,8 @@ async def create_metrics(req: schemas.Metric):
 
     # Incrémenter le compteur dans Redis
     redisConf.redis_client.incr(f"page_count:{req.tracker.WINDOW_LOCATION_HREF}")
+    # Incrémenter le compteur Prometheus avec l'URL en tant qu'étiquette
+    page_view_counter.labels(url=req.tracker.WINDOW_LOCATION_HREF).inc()
 
     # Afficher le compteur
     page_count = redisConf.redis_client.get(f"page_count:{req.tracker.WINDOW_LOCATION_HREF}")
